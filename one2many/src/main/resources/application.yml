@@ -1,0 +1,16 @@
+server:
+  port: 8087
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:123456}
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/demo_test?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=UTF-8
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+
+
