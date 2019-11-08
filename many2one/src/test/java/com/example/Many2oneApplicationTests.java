@@ -20,21 +20,6 @@ public class Many2oneApplicationTests {
     @Autowired
     private AddressRepository addressRepository;
 
-    @Test
-    public void testPerSavePerson() {
-        /**
-         * Hibernate: select person0_.guid as guid1_1_1_, person0_.address_xxxx as address_3_1_1_, person0_.name as name2_1_1_, address1_.addresszz as addressz1_0_0_, address1_.detail as detail2_0_0_ from person person0_ left outer join address address1_ on person0_.address_xxxx=address1_.addresszz where person0_.guid=?
-         * Hibernate: select address0_.addresszz as addressz1_0_0_, address0_.detail as detail2_0_0_ from address address0_ where address0_.addresszz=?
-         * Hibernate: insert into address (detail) values (?)
-         * Hibernate: insert into person (address_xxxx, name, guid) values (?, ?, ?)
-         */
-        Person person = new Person();
-        person.setGuid("55555");
-        person.setName("liujinhui11");
-        Address address = new Address(1, "武汉");  // 在person中设置cascade级联操作
-        person.setAddress(address);
-        personRepository.save(person);
-    }
 
     @Test
     public void testPerSavePerson2() {
@@ -50,6 +35,23 @@ public class Many2oneApplicationTests {
         Person person = new Person();
         person.setGuid("55555");
         person.setName("liujinhui11");
+        person.setAddress(address);
+        personRepository.save(person);
+    }
+
+
+    @Test
+    public void testPerSavePerson() {
+        /**
+         * Hibernate: select person0_.guid as guid1_1_1_, person0_.address_xxxx as address_3_1_1_, person0_.name as name2_1_1_, address1_.addresszz as addressz1_0_0_, address1_.detail as detail2_0_0_ from person person0_ left outer join address address1_ on person0_.address_xxxx=address1_.addresszz where person0_.guid=?
+         * Hibernate: select address0_.addresszz as addressz1_0_0_, address0_.detail as detail2_0_0_ from address address0_ where address0_.addresszz=?
+         * Hibernate: insert into address (detail) values (?)
+         * Hibernate: insert into person (address_xxxx, name, guid) values (?, ?, ?)
+         */
+        Person person = new Person();
+        person.setGuid("55555");
+        person.setName("liujinhui11");
+        Address address = new Address(1, "武汉");  // 在person中设置cascade级联操作
         person.setAddress(address);
         personRepository.save(person);
     }

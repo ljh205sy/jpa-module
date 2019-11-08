@@ -12,7 +12,7 @@ import java.util.Set;
  */
 @Entity
 @NoArgsConstructor
-@Table(name = "address")
+@Table(name = "t_address")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,8 @@ public class Address {
 
     // Set<Person> persons 定义集合，name指定外键列,对应当前表的主键的列
     // 在student表中建立一个字段address_x, 用来映射当前表的主键列
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private Set<Person> persons = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "address")
+    private Set<Person> persons = new HashSet<>();
 
     public Address(Integer addresszz, String detail) {
         this.addresszz = addresszz;
@@ -47,11 +47,11 @@ public class Address {
     }
 
 
-//    public Set<Person> getPersons() {
-//        return persons;
-//    }
-//
-//    public void setPersons(Set<Person> persons) {
-//        this.persons = persons;
-//    }
+    public Set<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(Set<Person> persons) {
+        this.persons = persons;
+    }
 }

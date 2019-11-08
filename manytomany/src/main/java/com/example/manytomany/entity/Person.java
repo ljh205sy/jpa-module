@@ -14,19 +14,19 @@ import java.util.Set;
  * 多对多， 多个person对用多个address
  */
 @Entity
-@Table(name = "person")
-public class Person {
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    private String guid;
-    @Column
-    private String name;
+    @Table(name = "person")
+    public class Person {
+        @Id
+        @GeneratedValue(generator = "uuid")
+        @GenericGenerator(name = "uuid", strategy = "uuid")
+        private String guid;
+        @Column
+        private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "person_address", joinColumns = @JoinColumn(name = "person_id1"),
-            inverseJoinColumns = @JoinColumn(name = "address_id2"))
-    private Set<Address> addresss = new HashSet<>();
+        @ManyToMany(fetch = FetchType.EAGER)
+        @JoinTable(name = "person_address", joinColumns = @JoinColumn(name = "person_id1"),
+                inverseJoinColumns = @JoinColumn(name = "address_id2"))
+        private Set<Address> addresss = new HashSet<>();
 
     @Override
     public String toString() {

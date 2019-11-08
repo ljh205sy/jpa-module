@@ -21,7 +21,7 @@ import java.util.Objects;
  * ,@ManyToOne表明Person是多端，@JoinColumn设置在Address表中的关联字段(外键)。
  */
 @Entity
-@Table(name = "person")
+@Table(name = "t_person")
 public class Person {
     @Id
     @GeneratedValue(generator = "uuid")
@@ -29,6 +29,10 @@ public class Person {
     private String guid;
     @Column
     private String name;
+
+    // 多对一，使用@joinColumn，不会建立第三张表
+    // 使用外键address_xxxx进行外键关联，在t_person中存在一个列address_xxxx与主表address表进行关联
+    // 关系维护由person进行维护
     @ManyToOne
     @JoinColumn(name = "address_xxxx")
     private Address address;
